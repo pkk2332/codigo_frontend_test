@@ -1,65 +1,99 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import styles from '../styles/Home.module.css';
+import { motion } from 'framer-motion';
+import { appIcon, category, catgIcon, portfolios, settingIcon, webIcon } from '../constant/index';
+import Header from '../components/header';
+import Footer from '../components/footer';
+import Portfolio from '../components/portfolio';
+
+const variants = {
+	visible: { y: 0, opacity: 1 },
+	hidden: { y: 100, opacity: 0.2 }
+};
 
 export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+	return (
+		<div>
+			<Head>
+				<title>Create Next App</title>
+				<link rel="icon" href="/favicon.ico" />
+			</Head>
+			<Header />
+			<motion.div
+				initial="hidden"
+				animate="visible"
+				variants={variants}
+				transition={{
+					duration: 0.5,
+					delay: 0.3
+				}}
+			>
+				<div className="work-header">
+					<p>Here’s 5% of</p>
+					<p>our published work.</p>
+					<p className="primary_color">See 100% of our power.</p>
+					<div className="work_category-wrapper text-2xl mt-16 gap-10">
+						<div className="cat_grid">
+							<div className=" cat_item flex">
+								<div className="w-6 h-2 border-b-2 pt-4 mr-2 active" />
+								<strong> All</strong>
+							</div>
+							<div className="cat-item">Food And Beverage</div>
+							<div className="cat_item">Media</div>
+							<div className="cat_item">Transport & Logistic</div>
+							<div className="cat_item">Banking & Finance</div>
+							<div className="cat_item">LifeStyle</div>
+							<div className="cat_item">Co-incubation</div>
+							<div className="cat_item">HealthCare</div>
+							<div className="cat_item">Retail & Entertainment</div>
+							<div className="cat_item">Telco</div>
+							<div className="cat_item">Others</div>
+							<div className="cat_item">Startup</div>
+						</div>
+						<div className="legend_grid mt-6  text-base">
+							<h1>
+								<strong>LEGEND</strong>
+							</h1>
+							<div className="border-l-2 flex flex-col mt-5 pl-8">
+								<div className="flex">
+									<div className="flex">
+										<img className="legend-icon m-auto" src={appIcon} alt="" />
+										<div className="pl-4">App</div>
+									</div>
+									<div className="flex ml-16">
+										<img className="legend-icon m-auto" src={webIcon} alt="" />
+										<div className="pl-4">Web</div>
+									</div>
+								</div>
+								<div className="flex mt-5">
+									<div className="flex">
+										<img className="legend-icon m-auto" src={settingIcon} alt="" />
+										<div className="pl-4">CMS</div>
+									</div>
+									<div className="flex ml-16">
+										<img className="legend-icon m-auto" src={catgIcon} alt="" />
+										<div className="pl-4">UI/UX</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</motion.div>
+			<div className="work-portfolio-wrapper">
+				{portfolios.map((portfolio) => (
+					<Portfolio
+						key={portfolio.src}
+						src={portfolio.src}
+						icons={portfolio.icons}
+						category_name={portfolio.category_name}
+						title={portfolio.title}
+						white_text={portfolio.white_text}
+						span2={portfolio.span2}
+					/>
+				))}
+			</div>
+			<Footer />
+		</div>
+	);
 }
