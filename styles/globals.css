@@ -279,9 +279,6 @@ body::-webkit-scrollbar-thumb {
 	}
 }
 @media only screen and (max-width: 460px) {
-	.nav-items {
-		left: 30% !important;
-	}
 	.burger-active {
 		width: 200vh !important;
 		left: 130% !important;
