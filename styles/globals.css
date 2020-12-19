@@ -27,6 +27,7 @@
 html {
 	font-size: 62.5%;
 	font-family: Neue Einstellung, Helvetica, Arial, sans-serif;
+	overflow-y: auto;
 }
 
 body::-webkit-scrollbar {
